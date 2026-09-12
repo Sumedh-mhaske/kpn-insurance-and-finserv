@@ -10,21 +10,22 @@ export default function ScrollReveal({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
 
-  const directions = {
+  const map = {
     up: { y: 40, x: 0 },
     down: { y: -40, x: 0 },
     left: { y: 0, x: 40 },
     right: { y: 0, x: -40 },
+    none: { y: 0, x: 0 },
   };
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, ...directions[direction] }}
+      initial={{ opacity: 0, ...map[direction] }}
       animate={
         isInView
           ? { opacity: 1, y: 0, x: 0 }
-          : { opacity: 0, ...directions[direction] }
+          : { opacity: 0, ...map[direction] }
       }
       transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
